@@ -16,13 +16,23 @@ public class GameOverScript : MonoBehaviour
     //Every frame, we check for player inputs
     void Update()
     {
+        Scene thisScene = SceneManager.GetActiveScene();
+        string currentScene = thisScene.name;        
         TimerScript.timerStop();
         timer = TimerScript.currentTime;
         score = PlayerScript.Score;
+        if (currentScene == "Game Over")
+        {
+            scoreTimer.text = "Score: " + score + "\n" + "Time: " + timer.ToString("F2") + "\n" + "Died on: " +
+                              PlayerScript.currentScene;
+        }
+        else if (currentScene == "You Win!")
+        {
+            scoreTimer.text = "Score: " + score + "\n" + "Time: " + timer.ToString("F2") + "\n";
+        }
 
-        scoreTimer.text = "Score: " + score + "\n" + "Time: " + timer.ToString("F2") + "\n" + "Died on: " + PlayerScript.currentScene;
-    //If the player hit space. . .
-    if (Input.GetKeyDown(KeyCode.Space))
+        //If the player hit space. . .
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             //Then load the 'Example 3' scene
             SceneManager.LoadScene("Tutorial");

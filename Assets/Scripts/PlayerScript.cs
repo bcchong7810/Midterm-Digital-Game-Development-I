@@ -166,9 +166,13 @@ public class PlayerScript : MonoBehaviour
             Die();
         }
 
+        //Scene setup
+        Scene thisScene = SceneManager.GetActiveScene();
+        currentScene = thisScene.name;
+        
         //This checks to see if the thing you bumped into has the CoinScript script on it
         CoinScript coin = other.gameObject.GetComponent<CoinScript>();
-
+        
         //If it does, run the code block belows
         if (coin != null)
         {
@@ -183,7 +187,11 @@ public class PlayerScript : MonoBehaviour
             //And then update the game's score text
             
             UpdateScore();
-            if (coinCount == 1) {
+            if (coinCount == 1 && currentScene == "Level 1")
+            {
+                SceneManager.LoadScene("You Win!");
+            }
+            else if (coinCount == 1) {
                 SceneManager.LoadScene("Level 1");
             }
         }
@@ -200,8 +208,6 @@ public class PlayerScript : MonoBehaviour
     //If this function is called, the player character dies. The game goes to a 'Game Over' screen.
     public void Die()
     {   
-        Scene thisScene = SceneManager.GetActiveScene();
-        currentScene = thisScene.name;
         SceneManager.LoadScene("Game Over");
     }
 
