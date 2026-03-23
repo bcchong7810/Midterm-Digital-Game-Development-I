@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5162a7b70035233478b03f3832124e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalHazardScript
-  RB: {fileID: 73861446}
+  HHRB: {fileID: 73861446}
   velocity: {x: 0, y: 0}
 --- !u!1001 &104257028
 PrefabInstance:
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5162a7b70035233478b03f3832124e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalHazardScript
-  RB: {fileID: 250431991}
+  HHRB: {fileID: 250431991}
   velocity: {x: 0, y: 0}
 --- !u!50 &250431991
 Rigidbody2D:
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5162a7b70035233478b03f3832124e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalHazardScript
-  RB: {fileID: 251666068}
+  HHRB: {fileID: 251666068}
   velocity: {x: 0, y: 0}
 --- !u!1001 &354912179
 PrefabInstance:
@@ -1136,7 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5162a7b70035233478b03f3832124e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalHazardScript
-  RB: {fileID: 675157361}
+  HHRB: {fileID: 675157361}
   velocity: {x: 0, y: 0}
 --- !u!1 &781872229 stripped
 GameObject:
@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b769ce227ba1c3c4e9e5150a1d935015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  RB: {fileID: 781872230}
+  VHRB: {fileID: 781872230}
   velocity: {x: 0, y: 0}
 --- !u!1 &828603013 stripped
 GameObject:
@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5162a7b70035233478b03f3832124e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalHazardScript
-  RB: {fileID: 828603014}
+  HHRB: {fileID: 828603014}
   velocity: {x: 0, y: 0}
 --- !u!1001 &973600326
 PrefabInstance:
@@ -1497,7 +1497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b769ce227ba1c3c4e9e5150a1d935015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  RB: {fileID: 1210013034}
+  VHRB: {fileID: 1210013034}
   velocity: {x: 0, y: 0}
 --- !u!1 &1212608913 stripped
 GameObject:
@@ -1531,20 +1531,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1212608922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212608913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5162a7b70035233478b03f3832124e17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HorizontalHazardScript
-  RB: {fileID: 1370821483}
-  velocity: {x: 0, y: 0}
 --- !u!1001 &1216448581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1654,7 +1640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b769ce227ba1c3c4e9e5150a1d935015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  RB: {fileID: 1267372090}
+  VHRB: {fileID: 1267372090}
   velocity: {x: 0, y: 0}
 --- !u!1 &1343566888 stripped
 GameObject:
@@ -1700,7 +1686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5162a7b70035233478b03f3832124e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalHazardScript
-  RB: {fileID: 1343566889}
+  HHRB: {fileID: 1343566889}
   velocity: {x: 0, y: 0}
 --- !u!1 &1370821482 stripped
 GameObject:
@@ -1746,7 +1732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b769ce227ba1c3c4e9e5150a1d935015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  RB: {fileID: 1370821483}
+  VHRB: {fileID: 1370821483}
   velocity: {x: 0, y: 0}
 --- !u!1 &1464669343 stripped
 GameObject:
@@ -1792,7 +1778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b769ce227ba1c3c4e9e5150a1d935015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  RB: {fileID: 1464669344}
+  VHRB: {fileID: 1464669344}
   velocity: {x: 0, y: 0}
 --- !u!1001 &1549866604
 PrefabInstance:
@@ -2084,7 +2070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b769ce227ba1c3c4e9e5150a1d935015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HazardScript
-  RB: {fileID: 1893525018}
+  VHRB: {fileID: 1893525018}
   velocity: {x: 0, y: 0}
 --- !u!1 &1959616654
 GameObject:
@@ -2456,7 +2442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5162a7b70035233478b03f3832124e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalHazardScript
-  RB: {fileID: 2013187985}
+  HHRB: {fileID: 2013187985}
   velocity: {x: 0, y: 0}
 --- !u!50 &2013187985
 Rigidbody2D:
@@ -2975,7 +2961,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1849279779400285333, guid: fb946d28a97bb974a85272d12a1a51be, type: 3}
       propertyPath: m_Name
-      value: Horizontal Hazards
+      value: Generic Hazard
       objectReference: {fileID: 0}
     - target: {fileID: 1849279779400285333, guid: fb946d28a97bb974a85272d12a1a51be, type: 3}
       propertyPath: m_Layer
@@ -3032,9 +3018,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1849279779400285333, guid: fb946d28a97bb974a85272d12a1a51be, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1212608918}
-    - targetCorrespondingSourceObject: {fileID: 1849279779400285333, guid: fb946d28a97bb974a85272d12a1a51be, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1212608922}
   m_SourcePrefab: {fileID: 100100000, guid: fb946d28a97bb974a85272d12a1a51be, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
