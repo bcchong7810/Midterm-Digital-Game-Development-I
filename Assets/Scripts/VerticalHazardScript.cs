@@ -16,13 +16,13 @@ public class HazardScript : MonoBehaviour
     {   
 
         /*Vertical patrol path for hazards/lava below*/
-        if (RB.linearVelocity.y >= 0.0f && RB.position.y >= 2.0f)
+        if (RB.linearVelocity.y >= 0.0f && RB.position.y >= 4.5f)
         { 
             velocity.x = 0.0f;
             velocity.y = -5.0f; //Moves down after hitting upper limit of patrol
         }
 
-        if (RB.linearVelocity.y <= 0.0f && RB.position.y <= -2.0f)
+        if (RB.linearVelocity.y <= 0.0f && RB.position.y <= -4.5f)
         {
             velocity.x = 0.0f;
             velocity.y = 5.0F; //Moves up after hitting lower limit of patrol

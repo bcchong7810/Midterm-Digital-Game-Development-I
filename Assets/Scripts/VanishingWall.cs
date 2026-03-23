@@ -1,46 +1,55 @@
+using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class VanishingWall : MonoBehaviour
 {   
-    public GameObject VW;
-    public const double lifeTime = 0.0d; //Initialize before testing
-    public const double deathTime = 0.0d; // Initialize before testing
-    public double lifeTimer = lifeTime;
-    public double deathTimer = 0.0d;
+    public GameObject VWprefab;
+    public GameObject VWInstance;
+    public bool lifeSwitch;
+    public double resetTimer = 1.0d;
+    public double timer;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
+        timer = resetTimer;
+        lifeSwitch = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (lifeTimer > 0.0d)
+        if (timer <= 0.0d && lifeSwitch)
         {
-            lifeTimer -= Time.deltaTime;
-        } else
+            timer += resetTimer;
+            lifeSwitch = false;
+            Destroy(VWInstance);
+        }  
+        
+        if (timer > 0.0d && lifeSwitch)
         {
-            Destroy(gameObject);
-            deathTimer = deathTime;
-        }
-
-        if (deathTimer > 0.0d)
+            timer -= Time.deltaTime;
+        } 
+        
+        if (timer <= 0.0d && !lifeSwitch)
+        {   
+            timer += resetTimer;
+            lifeSwitch = true;
+            VWInstance = Instantiate(VWprefab , new Vector3(-3, 0, 0), Quaternion.identity);
+        } 
+        
+        if (timer > 0.0d && !lifeSwitch)
         {
-            deathTimer -= Time.deltaTime;
-        }
-        else
-        {
-            lifeTimer = lifeTime;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(VW, VW.transform.position, Quaternion.identity); 
+            timer -= Time.deltaTime;
         }
         
-
     }
+
+
+
+
+    
+    
 }

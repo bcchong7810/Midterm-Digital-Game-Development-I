@@ -5,6 +5,8 @@ using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Debug = UnityEngine.Debug;
+using Object = System.Object;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -21,7 +23,7 @@ public class PlayerScript : MonoBehaviour
     public float Speed = 5;
     
     //This is how many points we currently have
-    public int Score = 0;
+    public static int Score = 0;
     
     //Start automatically gets triggered once when the objects turns on/the game starts
     void Start()
@@ -37,8 +39,6 @@ public class PlayerScript : MonoBehaviour
         //The code below controls the character's movement
         //First we make a variable that we'll use to record how we want to move
         Vector2 vel = new Vector2(0,0);
-        
-        //Then we use if statement to figure out what that variable should look like
         
         //If I hold the right arrow key, the player should move right. . .
         if (Input.GetKey(KeyCode.RightArrow))
@@ -75,9 +75,13 @@ public class PlayerScript : MonoBehaviour
             //Run your 'you lose' function!
             Die();
         }
-        
+
         //This checks to see if the thing you bumped into has the CoinScript script on it
         CoinScript coin = other.gameObject.GetComponent<CoinScript>();
+        //Creates array of game objects tagged "Coin"
+        GameObject[] coinObjects = GameObject.FindGameObjectsWithTag("Coin");
+        //Number of "Coin" objects
+        int count  = coinObjects.Length;
         //If it does, run the code block belows
         if (coin != null)
         {
@@ -87,7 +91,13 @@ public class PlayerScript : MonoBehaviour
             Score++;
             //And then update the game's score text
             UpdateScore();
+
+            Debug.Log(count);
+            if (count == 1) {
+                SceneManager.LoadScene("Game Start");
+            }
         }
+    
     }
 
     //This function updates the game's score text to show how many points you have

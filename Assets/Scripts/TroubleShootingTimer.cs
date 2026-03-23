@@ -5,38 +5,50 @@ using UnityEditor;
 
 public class TroubleShootingTimer : MonoBehaviour
 {
-    public double timer = 0.0d;
-    public bool lifeSwitch = true;
-    public TextMeshPro lifeDeathTimerText; 
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public double timer;
+    public double resetTimer = 5.0d;
+    public bool lifeSwitch;
+    public TextMeshPro lifeDeathTimerText;
+
     void Start()
     {
-
+        timer = resetTimer;
+        lifeSwitch = true;
+        
     }
-
-    // Update is called once per frame
+    
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Update()
     {
         if (timer <= 0.0d && lifeSwitch)
         {
-            timer += 5.0d;
+            timer += resetTimer;
             lifeSwitch = false;
-        } else if (timer > 0.0d && lifeSwitch)
-        {
-            timer -= Time.deltaTime;
-        } else if (timer <= 0.0d && !lifeSwitch)
-        {
-            timer += 5.0d;
-            lifeSwitch = true;
-        } else if (timer > 0.0d && !lifeSwitch)
-        {
-            timer -= Time.deltaTime;
-        }
-
-        lifeDeathTimerText.text = "Life and Death cycle: " + timer.ToString("F2") + "\n" + lifeSwitch.ToString();
+            Debug.Log("DESTROY TEST");
+        }  
         
+        if (timer > 0.0d && lifeSwitch)
+        {
+            timer -= Time.deltaTime;
+            Debug.Log("Countdown1 TEST");
+        } 
+        
+        if (timer <= 0.0d && !lifeSwitch)
+        {
+            Debug.Log("CREATE TEST");            
+            timer += resetTimer;
+            lifeSwitch = true;
 
-    }
+        } 
+        
+        if (timer > 0.0d && !lifeSwitch)
+        {
+            timer -= Time.deltaTime;
+            Debug.Log("Countdown2 TEST");
+        }
+        
+    } 
+
+
 }
 
