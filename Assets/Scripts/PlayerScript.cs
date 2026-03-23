@@ -58,7 +58,6 @@ public class PlayerScript : MonoBehaviour
         cooldownTimer = 3.0d;
         
         //During setup we call UpdateScore to make sure our score text looks correct
-        Score = 0;
         UpdateScore();
     }
 

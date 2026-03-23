@@ -26,6 +26,8 @@ public class GameOverScript : MonoBehaviour
         {
             //Then load the 'Example 3' scene
             SceneManager.LoadScene("Tutorial");
+            TimerScript.currentTime = 0.0d;
+            PlayerScript.Score = 0;
         }
     }
 }

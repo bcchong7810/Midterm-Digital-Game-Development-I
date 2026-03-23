@@ -2611,6 +2611,14 @@ PrefabInstance:
       propertyPath: ScoreText
       value: 
       objectReference: {fileID: 394526837}
+    - target: {fileID: 6926633619418293546, guid: 5465daea84a2bcb43acd34cbcbb9c9ae, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926633619418293546, guid: 5465daea84a2bcb43acd34cbcbb9c9ae, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8714988357030234600, guid: 5465daea84a2bcb43acd34cbcbb9c9ae, type: 3}
       propertyPath: m_RootOrder
       value: 2
