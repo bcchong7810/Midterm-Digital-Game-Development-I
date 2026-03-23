@@ -20,15 +20,37 @@ public class PlayerScript : MonoBehaviour
     public TextMeshPro ScoreText;
     
     //This will control how fast the player moves
-    public float Speed = 5;
+    public static float Speed = 5;
     
     //This is how many points we currently have
     public static int Score = 0;
+
+    //Coin counter for next scene
+    public int coinCount;
+
+    public float speedBoost = Speed * 2;
+    public bool boostOn;
+    public bool cooldown;
+    public double boostTimer;
+    public double cooldownTimer;
     
     //Start automatically gets triggered once when the objects turns on/the game starts
     void Start()
     {   
+        
+        //Creates array of game objects tagged "Coin"
+        GameObject[] coinObjects = GameObject.FindGameObjectsWithTag("Coin");
+    
+        //Number of "Coin" objects
+        coinCount  = coinObjects.Length;
+
+        boostOn = true;
+        cooldown = false;
+        boostTimer = 1.0d;
+        cooldownTimer = 3.0d;
+        
         //During setup we call UpdateScore to make sure our score text looks correct
+        Score = 0;
         UpdateScore();
     }
 
@@ -61,6 +83,31 @@ public class PlayerScript : MonoBehaviour
             vel.y = -Speed;
         }
         
+        //BOOST LOGIC BELOW"
+        
+        
+        
+        //If I hold the right arrow key, the player should move right and BOOST. . .
+        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftShift) && boostOn)
+        {
+            vel.x = speedBoost;
+        }
+        //If I hold the left arrow, the player should move left and BOOST. . .
+        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.LeftShift) && boostOn)
+        {
+            vel.x = -speedBoost;
+        }
+        //If I hold the up arrow, the player should move up and BOOST. . .
+        if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftShift) && boostOn)
+        {
+            vel.y = speedBoost;
+        }
+        //If I hold the down arrow, the player should move down and BOOST. . .
+        if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftShift) && boostOn)
+        {
+            vel.y = -speedBoost;
+        }
+        
         //Finally, I take that variable and I feed it to the component in charge of movement
         RB.linearVelocity = vel;
     }
@@ -78,10 +125,7 @@ public class PlayerScript : MonoBehaviour
 
         //This checks to see if the thing you bumped into has the CoinScript script on it
         CoinScript coin = other.gameObject.GetComponent<CoinScript>();
-        //Creates array of game objects tagged "Coin"
-        GameObject[] coinObjects = GameObject.FindGameObjectsWithTag("Coin");
-        //Number of "Coin" objects
-        int count  = coinObjects.Length;
+
         //If it does, run the code block belows
         if (coin != null)
         {
@@ -89,11 +133,14 @@ public class PlayerScript : MonoBehaviour
             coin.GetBumped();
             //Make your score variable go up by one. . .
             Score++;
+            
+            //Update number of coins
+            coinCount -= 1;
+            
             //And then update the game's score text
+            
             UpdateScore();
-
-            Debug.Log(count);
-            if (count == 1) {
+            if (coinCount == 1) {
                 SceneManager.LoadScene("Game Start");
             }
         }

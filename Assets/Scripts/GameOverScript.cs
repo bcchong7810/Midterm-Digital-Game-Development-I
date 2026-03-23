@@ -9,7 +9,7 @@ public class GameOverScript : MonoBehaviour
     public TextMeshPro scoreTimer;
     public int score;
     public double timer;
-   
+    
     //This script controls what happens on the Game Over screen
     //Currently, the only option is for the player to hit 'Space' and restart the game
     
@@ -20,7 +20,7 @@ public class GameOverScript : MonoBehaviour
         timer = TimerScript.currentTime;
         score = PlayerScript.Score;
         
-        scoreTimer.text = "Score: " + score.ToString() + "\n" + "Time: " + timer.ToString("F2");
+        scoreTimer.text = "Score: " + score + "\n" + "Time: " + timer.ToString("F2");
         //If the player hit space. . .
         if (Input.GetKeyDown(KeyCode.Space))
         {

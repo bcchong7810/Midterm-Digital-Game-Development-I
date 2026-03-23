@@ -5,12 +5,12 @@ public class TimerScript : MonoBehaviour
 {
     //Creates component to display text
     public TextMeshPro TimerText;
-    public static double currentTime = 0d;
+    public static double currentTime;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        currentTime = 0d;
     }
 
     // Update is called once per frame
