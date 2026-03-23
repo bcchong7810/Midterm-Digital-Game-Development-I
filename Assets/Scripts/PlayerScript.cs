@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Timers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,7 +15,10 @@ public class PlayerScript : MonoBehaviour
     
     //The Rigidbody2D is a component that gives the player physics, and is what we use to move
     public Rigidbody2D RB;
-
+    
+    //Sprite Renderer creator
+    public SpriteRenderer SR;
+    
     //TextMeshPro is a component that draws text on the screen.
     //We use this one to show our score.
     public TextMeshPro ScoreText;
@@ -30,9 +34,12 @@ public class PlayerScript : MonoBehaviour
 
     public float speedBoost = Speed * 2;
     public bool boostOn;
-    public bool cooldown;
+    public bool cooldownOn;
+    public bool boostAvailable;
     public double boostTimer;
     public double cooldownTimer;
+    public static string currentScene;
+    
     
     //Start automatically gets triggered once when the objects turns on/the game starts
     void Start()
@@ -44,8 +51,9 @@ public class PlayerScript : MonoBehaviour
         //Number of "Coin" objects
         coinCount  = coinObjects.Length;
 
-        boostOn = true;
-        cooldown = false;
+        boostAvailable = true;
+        boostOn = false;
+        cooldownOn = false;
         boostTimer = 1.0d;
         cooldownTimer = 3.0d;
         
@@ -63,53 +71,93 @@ public class PlayerScript : MonoBehaviour
         Vector2 vel = new Vector2(0,0);
         
         //If I hold the right arrow key, the player should move right. . .
-        if (Input.GetKey(KeyCode.RightArrow))
+       if (Input.GetKey(KeyCode.RightArrow) && !boostOn)
         {
             vel.x = Speed;
         }
         //If I hold the left arrow, the player should move left. . .
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) && !boostOn)
         {
             vel.x = -Speed;
         }
         //If I hold the up arrow, the player should move up. . .
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) && !boostOn)
         {
             vel.y = Speed;
         }
         //If I hold the down arrow, the player should move down. . .
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) && !boostOn)
         {
             vel.y = -Speed;
-        }
+        } 
         
-        //BOOST LOGIC BELOW"
-        
-        
-        
-        //If I hold the right arrow key, the player should move right and BOOST. . .
-        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftShift) && boostOn)
+        //BOOST LOGIC BELOW -----------------------------------
+        if (boostAvailable)
         {
+            if (Input.GetKeyDown(KeyCode.Space)) //Turns on boost
+            {
+                boostOn = true;
+                boostAvailable = false;
+            }
+        }
+
+        //If I hold the right arrow key, the player should move right and BOOST. . .
+        if (Input.GetKey(KeyCode.RightArrow) && boostOn)
+        {
+            Debug.Log("Right");
             vel.x = speedBoost;
         }
         //If I hold the left arrow, the player should move left and BOOST. . .
-        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.LeftShift) && boostOn)
-        {
+        if (Input.GetKey(KeyCode.LeftArrow) && boostOn)
+        {   
+            Debug.Log("Left");
             vel.x = -speedBoost;
         }
         //If I hold the up arrow, the player should move up and BOOST. . .
-        if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftShift) && boostOn)
+        if (Input.GetKey(KeyCode.UpArrow) && boostOn)
         {
+            Debug.Log("Up");
             vel.y = speedBoost;
         }
         //If I hold the down arrow, the player should move down and BOOST. . .
-        if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftShift) && boostOn)
+        if (Input.GetKey(KeyCode.DownArrow) && boostOn)
         {
+            Debug.Log("Down");
             vel.y = -speedBoost;
         }
         
+        //Cooldowns and active boost time
+        //Starts active boost timer when boost is activated
+        if (boostOn)
+        {
+            boostTimer -=  Time.deltaTime; //Start active boost countdown
+        }
+
+        //Turns boost off when timer is up and starts cooldown timer
+        if (boostTimer <= 0.0d)
+        {
+            boostOn = false; //Exist boost state
+            boostTimer = 1.0d; //Resets boost timer
+            cooldownOn = true; //Enter cooldown state
+        }
+
+        if (cooldownOn)
+        {
+            cooldownTimer -= Time.deltaTime; //Starts cooldown timer
+        }
+
+        if (cooldownTimer <= 0.0d)
+        {
+            boostAvailable = true;
+            cooldownTimer = 3.0d;
+        }
+        
+        
         //Finally, I take that variable and I feed it to the component in charge of movement
         RB.linearVelocity = vel;
+        
+        BoostColorChange();
+        
     }
 
     //This gets called whenever you bump into another object, like a wall or coin.
@@ -141,7 +189,7 @@ public class PlayerScript : MonoBehaviour
             
             UpdateScore();
             if (coinCount == 1) {
-                SceneManager.LoadScene("Game Start");
+                SceneManager.LoadScene("Level 1");
             }
         }
     
@@ -156,8 +204,25 @@ public class PlayerScript : MonoBehaviour
 
     //If this function is called, the player character dies. The game goes to a 'Game Over' screen.
     public void Die()
-    {
+    {   
+        Scene thisScene = SceneManager.GetActiveScene();
+        currentScene = thisScene.name;
         SceneManager.LoadScene("Game Over");
+    }
+
+    public void BoostColorChange()
+    {
+        if (boostAvailable && !boostOn)
+        {
+            SR.color = Color.white;
+        } else if (boostOn)
+        {
+            SR.color = Color.forestGreen;
+        } else if (cooldownOn)
+        {
+            SR.color = Color.blue;
+        }
+        
     }
     
 }

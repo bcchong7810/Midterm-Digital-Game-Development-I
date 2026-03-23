@@ -25,6 +25,6 @@ public class TimerScript : MonoBehaviour
 
     public static void timerStop()
     {
-        currentTime += 0;
+        currentTime += 0d;
     }
 }

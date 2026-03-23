@@ -19,13 +19,13 @@ public class GameOverScript : MonoBehaviour
         TimerScript.timerStop();
         timer = TimerScript.currentTime;
         score = PlayerScript.Score;
-        
-        scoreTimer.text = "Score: " + score + "\n" + "Time: " + timer.ToString("F2");
-        //If the player hit space. . .
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        scoreTimer.text = "Score: " + score + "\n" + "Time: " + timer.ToString("F2") + "\n" + "Died on: " + PlayerScript.currentScene;
+    //If the player hit space. . .
+    if (Input.GetKeyDown(KeyCode.Space))
         {
             //Then load the 'Example 3' scene
-            SceneManager.LoadScene("Example 3");
+            SceneManager.LoadScene("Tutorial");
         }
     }
 }
