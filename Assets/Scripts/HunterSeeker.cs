@@ -29,20 +29,20 @@ public class HunterSeeker : MonoBehaviour
         if (distance <= aggro)
         {
             SR.color = Color.deepPink;
-            if (playerPosition.x > hunterSeekerPosition.x)
+            if (playerPosition.x >= hunterSeekerPosition.x)
             {
-                velocity.x = 2.0f;
-            } else if (playerPosition.x < hunterSeekerPosition.x)
+                velocity.x = 1.5f;
+            } else if (playerPosition.x <= hunterSeekerPosition.x)
             {
-                velocity.x = -2.0f;
+                velocity.x = -1.5f;
             }
 
-            if (playerPosition.y > hunterSeekerPosition.y)
+            if (playerPosition.y >= hunterSeekerPosition.y)
             {
-                velocity.y = 2.0f;
-            } else if (playerPosition.y < hunterSeekerPosition.y)
+                velocity.y = 1.5f;
+            } else if (playerPosition.y <= hunterSeekerPosition.y)
             {
-                velocity.y = -2.0f;
+                velocity.y = -1.5f;
             } 
         }
         else

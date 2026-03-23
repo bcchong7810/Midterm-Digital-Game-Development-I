@@ -29,12 +29,12 @@ public class GameOverScript : MonoBehaviour
         else if (currentScene == "You Win!")
         {
             scoreTimer.text = "Score: " + score + "\n" + "Time: " + timer.ToString("F2") + "\n";
-        }
-
+        } 
+        
         //If the player hit space. . .
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //Then load the 'Example 3' scene
+            //Then load the 'Tutorial' scene
             SceneManager.LoadScene("Tutorial");
             TimerScript.currentTime = 0.0d;
             PlayerScript.Score = 0;
