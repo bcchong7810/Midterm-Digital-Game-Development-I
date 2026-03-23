@@ -6,6 +6,7 @@ public class HunterSeeker : MonoBehaviour
     public Rigidbody2D RB;
     public Rigidbody2D PLRB;
     public Vector2 velocity;
+    public double speed = 2.0f;
     public Vector2 playerPosition;
     public Vector2 hunterSeekerPosition;
     public static float distance;
@@ -30,22 +31,23 @@ public class HunterSeeker : MonoBehaviour
             SR.color = Color.deepPink;
             if (playerPosition.x > hunterSeekerPosition.x)
             {
-                velocity.x = 3.0f;
+                velocity.x = 2.0f;
             } else if (playerPosition.x < hunterSeekerPosition.x)
             {
-                velocity.x = -3.0f;
+                velocity.x = -2.0f;
             }
 
             if (playerPosition.y > hunterSeekerPosition.y)
             {
-                velocity.y = 3.0f;
+                velocity.y = 2.0f;
             } else if (playerPosition.y < hunterSeekerPosition.y)
             {
-                velocity.y = -3.0f;
+                velocity.y = -2.0f;
             } 
         }
         else
-        {
+        {   
+            SR.color = new Color32(70, 0,0,255);
             velocity.x = 0.0f;
             velocity.y = 0.0f;
         }

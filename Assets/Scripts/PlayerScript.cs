@@ -103,25 +103,21 @@ public class PlayerScript : MonoBehaviour
         //If I hold the right arrow key, the player should move right and BOOST. . .
         if (Input.GetKey(KeyCode.RightArrow) && boostOn)
         {
-            Debug.Log("Right");
             vel.x = speedBoost;
         }
         //If I hold the left arrow, the player should move left and BOOST. . .
         if (Input.GetKey(KeyCode.LeftArrow) && boostOn)
         {   
-            Debug.Log("Left");
             vel.x = -speedBoost;
         }
         //If I hold the up arrow, the player should move up and BOOST. . .
         if (Input.GetKey(KeyCode.UpArrow) && boostOn)
         {
-            Debug.Log("Up");
             vel.y = speedBoost;
         }
         //If I hold the down arrow, the player should move down and BOOST. . .
         if (Input.GetKey(KeyCode.DownArrow) && boostOn)
         {
-            Debug.Log("Down");
             vel.y = -speedBoost;
         }
         
